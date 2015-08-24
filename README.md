@@ -2,10 +2,10 @@
 **version 1.1** This is the repo of the official [SKAToolKit](https://github.com/SpriteKitAlliance/SKAToolKit) label node.
 <br><br>
 ###The Original SKLabelNode
-The traditional `SKLabelNode` poses many limitations and over the years Sprite Kit developpers have been forced to employ clever hacks to use even the most basic effects with text in their applications. For instance, to have multiple lines of text, one would use a label node for each line. To have shadows, developpers would initialize a second label node to offset their original. As for setting the anchor point of a label, there simply was no way beyond the limitations of the alignment modes.
+The traditional `SKLabelNode` poses many limitations and over the years Sprite Kit developers have been forced to employ clever hacks to use even the most basic effects with text in their applications. For instance, to have multiple lines of text, one would use a label node for each line. To have shadows, developers would initialize a second label node to offset their original. As for setting the anchor point of a label, there simply was no way beyond the limitations of the alignment modes.
 
 **The SKLabelNodePlus does away with these limitations.**
-###Tecnical Details
+###Technical Details
 **Important:** You must call the label's `drawLabel` method whenever you want to display or update the label.
 <br>This is related the label's design, which is optimized for performance by using draws to display the label's text.
 <br>An initialization will always look similar to:
@@ -19,7 +19,7 @@ Another thing to keep in mind is that although you will see all methods and prop
 
 ##Functionality
 
-###multi-line labels
+###Multi-line labels
 With the `SKLabelNodePlus` you can now use multi-line text within Sprite Kit. Simply write a newline character "\n" every time you need a new line of text.
 ```Objective-C
 SKLabelNodePlus *multiLineLabelNode = [SKLabelNodePlus labelNodeWithText:@"SpriteKit\nMultiLine\nLabel!!!"];
@@ -32,7 +32,7 @@ multiLineLabelNode.fontSize = 20;
 <p align="center">
 <img src="/Documentation/screenShot4.png"/>
 </p>
-####line spacing
+####Line spacing
 Use the `lineSpacing` property to control distance between lines.
 ```Objective-C
 multiLineLabelNode.lineSpacing = 10;
@@ -40,7 +40,7 @@ multiLineLabelNode.lineSpacing = 10;
 <p align="center">
 <img src="/Documentation/screenShot3.png"/>
 </p>
-####text alignment
+####Text alignment
 The properties `verticalAlignmentMode` and `horizontalAlignmentMode` from `SKLabelNode` retain their functionality. These **will not** align multi-line text, as they only give general adjustments to the `anchorPoint`. Instead, use the new `SKLabelNodePlus` property `textAlignmentMode`, which takes values of the type `NSTextAlignment`.
 <br><br>The possible values are: `NSTextAlignmentLeft`, `NSTextAlignmentRight`, `NSTextAlignmentCenter`, `NSTextAlignmentJustified`, and `NSTextAlignmentNatural`
 
@@ -72,9 +72,9 @@ shadowLabelNode.shadow = myShadow;
 </p>
 ###Sprite Node versatility
 Because `SKLabelNodePlus` is a subclass of `SKSpriteNode`, your label will have its own methods and parameters while retaining the versatility of the sprite node. This gives you *complete freedom and control* over your text and special effects.
-####anchor point
+####Anchor point
 You can set the anchor point however you choose with the `anchorPoint` property
-####textures and actions
+####Textures and actions
 The text of the label itself is a texture, so you can perform any actions that are possible with a sprite node.
 <br>Example:
 ```Objective-C
@@ -103,7 +103,7 @@ SKAction *keepblinking = [SKAction repeatActionForever:[SKAction sequence:@[chan
 <p align="center">
 <img src="/Documentation/happyface.gif"/>
 </p>
-####lighting
+####Lighting
 The `SKLabelNodePlus` can also be combined with an `SKLightNode` by using sprite node bitmasks.
 <br>Example:
 ```Objective-C
@@ -128,7 +128,7 @@ lightNode.enabled = YES;
 <p align="center">
 <img src="/Documentation/screenShot2.png"/>
 </p>
-####custom shaders
+####Custom shaders
 Custom shaders are compatible with `SKLabelNodePlus`. Use your own shaders with your label nodes!
 ##Using SKLabelNodePlus
 ###CocoaPods
@@ -144,7 +144,7 @@ You will now be able to use `SKLabelNodePlus` in your Swift project.
 ##Contact
 If you have any questions, suggestions, or just comments, feel free to email me at maksym.kargin@gmail.com
 
-##Licence
+##License
 The MIT License (MIT)
 
 Copyright (c) 2015 Max Kargin
