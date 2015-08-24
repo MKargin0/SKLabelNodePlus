@@ -9,43 +9,51 @@ The traditional `SKLabelNode` poses many limitations and over the years Sprite K
 **Important:** You must call the label's `drawLabel` method whenever you want to display or update the label.
 <br>This is related the label's design, which is optimized for performance by using draws to display the label's text.
 <br>An initialization will always look similar to:
-````
+```Objective-C
 SKLabelNodePlus *label;
 //perform initialization and setup
 [label drawLabel];
 [self addChild:label];
-````
+```
 Another thing to keep in mind is that although you will see all methods and properties of `SKLabelNode`, the class `SKLabelNodePlus` actually inherits from `SKSpriteNode`, thus giving you access to all the methods and properties of sprite nodes as well. 
 
 ##Functionality
 
 ###multi-line labels
 With the `SKLabelNodePlus` you can now use multi-line text within Sprite Kit. Simply write a newline character "\n" every time you need a new line of text.
-````
+```Objective-C
 SKLabelNodePlus *multiLineLabelNode = [SKLabelNodePlus labelNodeWithText:@"SpriteKit\nMultiLine\nLabel!!!"];
 
 multiLineLabelNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
 multiLineLabelNode.fontSize = 20;
 [multiLineLabelNode drawLabel];
 [self addChild:multiLineLabelNode];
-````
+```
+<p align="center">
+<img src="/Documentation/screenShot4.png"/>
+</p>
 ####line spacing
 Use the `lineSpacing` property to control distance between lines.
-````
+```Objective-C
 multiLineLabelNode.lineSpacing = 10;
-````
+```
+<p align="center">
+<img src="/Documentation/screenShot3.png"/>
+</p>
 ####text alignment
 The properties `verticalAlignmentMode` and `horizontalAlignmentMode` from `SKLabelNode` retain their functionality. These **will not** align multi-line text, as they only give general adjustments to the `anchorPoint`. Instead, use the new `SKLabelNodePlus` property `textAlignmentMode`, which takes values of the type `NSTextAlignment`.
 <br><br>The possible values are: `NSTextAlignmentLeft`, `NSTextAlignmentRight`, `NSTextAlignmentCenter`, `NSTextAlignmentJustified`, and `NSTextAlignmentNatural`
 
 For example
-````
+```Objective-C
 multiLineLabelNode.textAlignmentMode = NSTextAlignmentRight;
-````
-
+```
+<p align="center">
+<img src="/Documentation/screenShot5.png"/>
+</p>
 ###Text Shadows
 You can create text with a shadow using `SKLabelNodePlus`. Simply use Apple's existing `NSShadow` class and set the `shadow` property on your label likewise:
-````
+```Objective-C
 NSShadow *myShadow = [NSShadow new];
 [myShadow setShadowColor:[UIColor redColor]];
 [myShadow setShadowBlurRadius:3.0];
@@ -58,7 +66,10 @@ shadowLabelNode.fontSize = 35;
 shadowLabelNode.shadow = myShadow;
 [shadowLabelNode drawLabel];
 [self addChild:shadowLabelNode];
-````
+```
+<p align="center">
+<img src="/Documentation/screenShot1.png"/>
+</p>
 ###Sprite Node versatility
 Because `SKLabelNodePlus` is a subclass of `SKSpriteNode`, your label will have its own methods and parameters while retaining the versatility of the sprite node. This gives you *complete freedom and control* over your text and special effects.
 ####anchor point
@@ -66,33 +77,36 @@ You can set the anchor point however you choose with the `anchorPoint` property
 ####textures and actions
 The text of the label itself is a texture, so you can perform any actions that are possible with a sprite node.
 <br>Example:
-````
+```Objective-C
 SKLabelNodePlus *effectLabel = [SKLabelNodePlus labelNodeWithText:@"Le Happy Face"];
-  effectLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
-  effectLabel.fontSize = 35;
-  [effectLabel drawLabel];
-  [self addChild:effectLabel];
+effectLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
+effectLabel.fontSize = 35;
+[effectLabel drawLabel];
+[self addChild:effectLabel];
   
-  SKTexture *labelTexture = effectLabel.texture;
-  SKTexture *faceTexture = [SKTexture textureWithImageNamed:@"LeHappyFace"];
-  SKAction *changeToFace = [SKAction runBlock:^{
-    effectLabel.xScale = 0.5;
-      effectLabel.yScale = 2.0;
-      effectLabel.anchorPoint = CGPointMake(0.5, 0.3);
-      effectLabel.texture = faceTexture;
-  }];
-  SKAction *changeToLabel = [SKAction runBlock:^{
-      [effectLabel setScale:1.0];
-      effectLabel.anchorPoint = CGPointMake(0.5, 0);
-      effectLabel.texture = labelTexture;
-  }];
-  SKAction *keepblinking = [SKAction repeatActionForever:[SKAction sequence:@[changeToFace, [SKAction waitForDuration:0.8],changeToLabel,[SKAction waitForDuration:0.8]]]];
-  [effectLabel runAction:keepblinking];
-````
+SKTexture *labelTexture = effectLabel.texture;
+SKTexture *faceTexture = [SKTexture textureWithImageNamed:@"LeHappyFace"];
+SKAction *changeToFace = [SKAction runBlock:^{
+  effectLabel.xScale = 0.5;
+    effectLabel.yScale = 2.0;
+    effectLabel.anchorPoint = CGPointMake(0.5, 0.3);
+    effectLabel.texture = faceTexture;
+}];
+SKAction *changeToLabel = [SKAction runBlock:^{
+    [effectLabel setScale:1.0];
+    effectLabel.anchorPoint = CGPointMake(0.5, 0);
+    effectLabel.texture = labelTexture;
+}];
+SKAction *keepblinking = [SKAction repeatActionForever:[SKAction sequence:@[changeToFace, [SKAction waitForDuration:0.8],changeToLabel,[SKAction waitForDuration:0.8]]]];
+[effectLabel runAction:keepblinking];
+```
+<p align="center">
+<img src="/Documentation/happyface.gif"/>
+</p>
 ####lighting
 The `SKLabelNodePlus` can also be combined with an `SKLightNode` by using sprite node bitmasks.
 <br>Example:
-````
+```Objective-C
 SKLabelNodePlus *lightLabel = [SKLabelNodePlus labelNodeWithText:@"Example Lighted Node"];
 lightLabel.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
 lightLabel.fontName = @"Futura-CondensedExtraBold";
@@ -110,7 +124,10 @@ lightNode.lightColor = [[UIColor alloc] initWithRed:1.0 green:0.7 blue:0 alpha:1
 lightNode.position = CGPointMake(30, 0);
 lightNode.enabled = YES;
 [lightLabel addChild:lightNode];
-````
+```
+<p align="center">
+<img src="/Documentation/screenShot2.png"/>
+</p>
 ####custom shaders
 Custom shaders are compatible with `SKLabelNodePlus`. Use your own shaders with your label nodes!
 ##Using SKLabelNodePlus
