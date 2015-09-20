@@ -25,6 +25,7 @@
         self.text = [NSString string];
         self.lineSpacing = 1;
         self.shadow = nil;
+        self.labelWidth = self.scene.size.width;
         self.textAlignmentMode = NSTextAlignmentCenter;
         [self setHorizontalAlignment:SKLabelHorizontalAlignmentModeCenter];
         [self setVerticalAlignnment:SKLabelVerticalAlignmentModeBaseline];
@@ -130,7 +131,7 @@
     
     // getting the text rect
     CGRect textRect =
-    [self.text boundingRectWithSize:CGSizeMake(self.scene.size.width,
+    [self.text boundingRectWithSize:CGSizeMake(self.labelWidth,
                                                self.scene.size.height)
                             options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin
                          attributes:textAttributes
@@ -149,6 +150,7 @@
     // update Sprite Node with textImage
     SKTexture *labelTexture = [SKTexture textureWithImage:textImage];
     self.texture = labelTexture;
+    self.anchorPoint = CGPointMake(0.5, 0.5);
 }
 
 @end
