@@ -1,5 +1,5 @@
 # SKLabelNodePlus
-**version 1.1** This is the repo of the official [SKAToolKit](https://github.com/SpriteKitAlliance/SKAToolKit) label node.
+**version 1.2** This is the repo of the official [SKAToolKit](https://github.com/SpriteKitAlliance/SKAToolKit) label node.
 <br><br>
 ###The Original SKLabelNode
 The traditional `SKLabelNode` poses many limitations and over the years Sprite Kit developers have been forced to employ clever hacks to use even the most basic effects with text in their applications. For instance, to have multiple lines of text, one would use a label node for each line. To have shadows, developers would initialize a second label node to offset their original. As for setting the anchor point of a label, there simply was no way beyond the limitations of the alignment modes.
@@ -20,7 +20,8 @@ Another thing to keep in mind is that although you will see all methods and prop
 ##Functionality
 
 ###Multi-line labels
-With the `SKLabelNodePlus` you can now use multi-line text within Sprite Kit. Simply write a newline character "\n" every time you need a new line of text.
+With the `SKLabelNodePlus` you can now use multi-line text within Sprite Kit.
+<br><b>\n option:</b> Simply write a newline character "\n" every time you need a new line of text.
 ```Objective-C
 SKLabelNodePlus *multiLineLabelNode = [SKLabelNodePlus labelNodeWithText:@"SpriteKit\nMultiLine\nLabel!!!"];
 
@@ -32,6 +33,7 @@ multiLineLabelNode.fontSize = 20;
 <p align="center">
 <img src="/Documentation/screenShot4.png"/>
 </p>
+<br><b>labelWidth option:</b> If you would like the label node to create a new line automatically after the text reaches a certain width, use the labelWidth property. Specify the width for the label in points, and when texts reaches that width it will word wrap to the next line.
 ####Line spacing
 Use the `lineSpacing` property to control distance between lines.
 ```Objective-C
